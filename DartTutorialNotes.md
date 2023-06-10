@@ -387,9 +387,9 @@ comment
 
 ```dart
 class Book {
-	String title;
-	String author;
-	int noPages;
+	String? title;
+	String? author;
+	int? noPages;
 }
 
 Book hp = Book();
@@ -403,22 +403,33 @@ print(hp.author);
 ## Constructors
 
 ```dart
-class Book {
+import "dart:math"; // importing the Dart Math library
+import "dart:io"; // importing io: input/output 
 
-	Book(String aTitle, String aAuthor, int aNoPages){
-		this.title = aTitle;
-		this.author = aAuthor;
-		this.noPages = aNoPages;
-	}
+class Student {
+  String? name;
+  double gpa = 0;
 
-	String title;
-	String author;
-	int noPages;
+  Student(String aName, double aGpa){
+    this.name = aName;
+    this.gpa = aGpa;
+  }
+
+  bool? hasHonors(){
+    return this.gpa >= 3.5;
+  }
+  
+  
 }
 
-Book hp = Book("Harry Potter", "JK Rowling", 500);
 
-print(hp.author);
+void main(){
+  Student jim = Student("Jim ", 3.40);
+  Student pam = Student("Pam", 3.60);
+
+  print(pam.hasHonors());
+  
+} 
 ```
 
 ## Building a quiz
