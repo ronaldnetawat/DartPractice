@@ -432,30 +432,6 @@ void main(){
 } 
 ```
 
-## Building a quiz
-
-```dart
-List<MathQuestion> questions = [
-    MathQuestion('1 + 1', '2'),
-    MathQuestion('2 - 7', '-5'),
-  ];
-
-  int score = 0;
-
-  for(MathQuestion question in questions){
-    String answer = prompt(question.prompt);
-    if(answer == question.answer){
-      print("Correct!");
-      score++;
-    } else {
-      print("Incorrect!");
-    }
-  }
-
-  print("You got ${score}/${questions.length} correct");
-```
-
-
 ## Class Functions
 
 ```dart
@@ -472,3 +448,57 @@ class Student {
     }
   }
 ```
+
+## Building a quiz
+
+```dart
+import "dart:math"; // importing the Dart Math library
+import "dart:io"; // importing io: input/output 
+
+String? prompt(String promptText){
+  print('${promptText}');
+  String? ans = stdin.readLineSync();
+  return ans;
+
+}
+
+double promptDouble(String? promptText){
+  print(promptText);
+  String? answer = stdin.readLineSync();
+  double myNum = double.parse(answer!);
+  return myNum;
+}
+
+class MathQuestion {
+  String? question;
+  double answer = 0;
+
+  MathQuestion(String? aQuestion, double aAnswer){
+    this.question = aQuestion;
+    this.answer = aAnswer;
+  }
+}
+
+void main(){
+
+  List<MathQuestion> questions = [
+    MathQuestion("3 + 5", 8.0),
+    MathQuestion("10 - 7", 3.0),
+    MathQuestion("100 * 9", 900.0)
+  ];
+
+  int score = 0;
+  for(MathQuestion mathQuestion in questions){
+    double userAnswer = promptDouble(mathQuestion.question);
+    if(userAnswer == mathQuestion.answer){
+      score++;
+    }
+    print("");
+  }
+  
+  print("Your score was ${score / questions.length * 100}%!");
+}
+```
+
+
+
