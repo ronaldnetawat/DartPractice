@@ -300,6 +300,7 @@ while(i < 5){
 
 ## Building a guessing game
 
+```dart
 import "dart:math"; // importing the Dart Math library
 import "dart:io"; // importing io: input/output 
 
