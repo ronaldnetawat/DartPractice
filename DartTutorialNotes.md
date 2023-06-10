@@ -408,7 +408,7 @@ import "dart:io"; // importing io: input/output
 
 class Student {
   String? name;
-  double gpa = 0;
+  double gpa = 0;	//initialiizng this as 0 so it's not null
 
   Student(String aName, double aGpa){
     this.name = aName;
