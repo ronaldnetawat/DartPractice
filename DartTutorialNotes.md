@@ -79,51 +79,56 @@ sqrt(144)
 ```dart
 import 'dart:io';
 
-print("What is your name")
-String name = stdin.readLineSync()
-print("Hello ${name}")
+print("What is your name");
+String? name = stdin.readLineSync();  // using String? because of some null-safety protocol
+print("Hello ${name}");
 ```
 
 ## Building a Basic Calculator
 
 ```dart 
-print("Enter your first number:");
-int num1 = int.parse(stdin.readLineSync());
-print("Enter your first number:");
-int num2 = int.parse(stdin.readLineSync());
-print(num1 + num2);
+print("Enter first number: ");
+String? input1 = stdin.readLineSync(); // using String? because of some null-safety protocol
+print("Enter second number: ");
+String? input2 = stdin.readLineSync(); // using String? because of some null-safety protocol
+
+String num1 = input1 ?? '';
+String num2 = input2 ?? '';
+  
+print(int.parse(num1) + int.parse(num2));
 ```
 
 ## Building a madlibs game
 
 ```dart
-print("Enter a color:");
-String color = stdin.readLineSync();
-print("Enter a plural noun:");
-String pluralNoun = stdin.readLineSync();
-print("Enter a celebrity:");
-String celebrity = stdin.readLineSync();
+print("Enter a color: ");
+String? color = stdin.readLineSync();
+
+print("Enter a plural noun: ");
+String? pluralNoun = stdin.readLineSync();
+
+print("Enter a celebrity: ");
+String? celebrity = stdin.readLineSync();
 
 print("Roses are ${color}");
 print("${pluralNoun} are blue");
-print("I love ${celebrity}");
+print("I love ${celebrity}")
 ```
 
 ## Lists
 
 ```dart
-List<int> favNumbers = [4, 8, 15, 16, 23, 42];
-//                      0, 1, 2,  3,  4,  5
+List<int> favNum = [12,3,235,23,1,3,7,23,132,5]; // creating a list of type int
 
-favNumbers.length;
-favNumbers[1];
-favNumbers[2] = 5;
-favNumbers.add(5);
-favNumbers.indexOf(8);
-favNumbers.contains(8);
-favNumbers.remove(42);
-
-print(favNumbers);
+print(favNum); // printing the list
+print(favNum.length); // prints length of the list
+print(favNum[1]); // prints item at index 1
+favNum[1] = 10; // changes the item at the index
+favNum.add(8); // adds an item to the end of the list
+favNum.indexOf(8); // prints index of the item
+print(favNum.contains(7)); // boolean - checks if element is in the list
+favNum.remove(3); // removes the specified element 
+favNum.removeAt(2); // removes the element at the specified index
 ```
 
 ## Functions
