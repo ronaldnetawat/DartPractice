@@ -1,17 +1,48 @@
-void main() {
+// BUILDING A MATH QUESTION QUIZ USING CLASSES, CONSTRUCTORS, IF-ELSE, LOOPS, ETC.
 
-  // DATATYPES: 
-  
-  String firstName = "Ron"; // string datatype
-  int x = 7; // integer number
-  double gpa = 3.50; // decimal number
-  bool isMale = true; // boolean is a true or false value
+import "dart:math"; // importing the Dart Math library
+import "dart:io"; // importing io: input/output 
 
-  print("My name is ${firstName}");
-  print("My age is ${x}");
-  print("My current gpa is ${gpa}");
-  print("The statement that I am a male is ${isMale}");
+String? prompt(String promptText){
+  print('${promptText}');
+  String? ans = stdin.readLineSync();
+  return ans;
+
+}
+
+double promptDouble(String? promptText){
+  print(promptText);
+  String? answer = stdin.readLineSync();
+  double myNum = double.parse(answer!);
+  return myNum;
+}
+
+class MathQuestion {
+  String? question;
+  double answer = 0;
+
+  MathQuestion(String? aQuestion, double aAnswer){
+    this.question = aQuestion;
+    this.answer = aAnswer;
+  }
+}
+
+void main(){
+
+  List<MathQuestion> questions = [
+    MathQuestion("3 + 5", 8.0),
+    MathQuestion("10 - 7", 3.0),
+    MathQuestion("100 * 9", 900.0)
+  ];
+
+  int score = 0;
+  for(MathQuestion mathQuestion in questions){
+    double userAnswer = promptDouble(mathQuestion.question);
+    if(userAnswer == mathQuestion.answer){
+      score++;
+    }
+    print("");
+  }
   
-  
-  
+  print("Your score was ${score / questions.length * 100}%!");
 }
