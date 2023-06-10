@@ -201,19 +201,18 @@ otherwise
   I order a salad. 
   
 ```dart
-bool isSmart = true;
+bool isSmart = false;
+bool isStudent = false;
 
-if(isSmart){
-  print("You are smart!")
-} else {
-  print("You need to study")
-}
-
-String name = "Mike";
-
-if(name.contains("M")){
-  print("you have an M in your name");
-}
+if(isSmart && isStudent){
+  print("You are a smart student!");
+} else if(isSmart && !isStudent){
+  print("You are smart, but not a student!");
+} else if(!isSmart && isStudent){
+  print("You are a student but not smart.");
+} else{
+  print("You are neither smart nor a student.");
+};
 ```
 
 ## &&/|| operators, elseif
@@ -234,23 +233,37 @@ if(isSmart && isStudent){
 ## Building a better calculator
 
 ```dart
-double promptNumber(){
-  print("Enter a number:");
-  return double.parse(stdin.readLineSync());
+String? prompt(String promptText){
+  print("The prompt is: ${promptText}");
+  String? ans = stdin.readLineSync();
+  return ans;
+
 }
 
-double num1 = promptNumber();
+double promptDouble(){
+  print("Enter a number: ");
+  String? answer = stdin.readLineSync();
+  double myNum = double.parse(answer!);
+  return myNum;
+}
 
-print("Operator (+,-,*,/):");
-String operator = stdin.readLineSync();
+void main(){
 
-double num2 = promptNumber();
-
-if(operator == '+') print(num1 + num2);
-else if(operator == '-') print(num1 - num2);
-else if(operator == '*') print(num1 * num2);
-else if(operator == '/') print(num1 / num2);
-else print("invalid operator!");
+  double num1 = promptDouble();
+  double num2 = promptDouble();
+  String? op = prompt("Enter an operation (+, -, /, *)");
+  
+  if(op == '+'){
+    print(num1 + num2);
+  }else if(op == '-'){
+    print(num1 - num2);
+  }else if(op == '/'){
+    print(num1/num2);
+  }else if(op == '*'){print(num1*num2);
+       }else{print("Invalid operator!");
+            }
+  
+}
 ```
 
 ## Switch Statements
@@ -287,20 +300,43 @@ while(i < 5){
 
 ## Building a guessing game
 
-```dart
-String promptGuess(){
-  print("Enter a guess:");
-  return stdin.readLineSync();
+import "dart:math"; // importing the Dart Math library
+import "dart:io"; // importing io: input/output 
+
+String? prompt(String promptText){
+  print('${promptText}');
+  String? ans = stdin.readLineSync();
+  return ans;
+
 }
 
-String answer = 'michael scott';
-String guess = '';
-
-while(guess != answer){
-  guess = promptGuess();
+double promptDouble(){
+  print("Enter a number: ");
+  String? answer = stdin.readLineSync();
+  double myNum = double.parse(answer!);
+  return myNum;
 }
 
-print("You Win!");
+void main(){
+
+  String? answer = "Elon Musk";
+  String? guess = "";
+
+  while(guess != answer){
+    guess = prompt("Enter a guess: ");
+    if(guess == answer){
+      break;
+    }else{print("Try again!");
+    print('');
+         }
+    
+  }
+
+  print("You won!");
+
+
+  
+}
 ```
 
 ## For Loops
